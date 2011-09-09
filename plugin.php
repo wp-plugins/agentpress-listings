@@ -34,6 +34,9 @@ function agentpress_listings_activation() {
 			deactivate_plugins( plugin_basename( __FILE__ ) ); /** Deactivate ourself */
 			wp_die( sprintf( __( 'Sorry, you cannot activate without <a href="%s">Genesis %s</a> or greater', 'apl' ), 'http://www.studiopress.com/support/showthread.php?t=19576', $latest ) );
 		}
+		
+		/** Flush rewrite rules */
+		add_action( 'init', 'flush_rewrite_rules', 11 );
 
 }
 
