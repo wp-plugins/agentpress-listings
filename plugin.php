@@ -12,28 +12,28 @@
 	License URI: http://www.opensource.org/licenses/gpl-license.php
 */
 
-register_activation_hook( __FILE__, 'agentpress_listings_activation_check' );
+register_activation_hook( __FILE__, 'agentpress_listings_activation' );
 /**
  * This function runs on plugin activation. It checks to make sure the required
  * minimum Genesis version is installed. If not, it deactivates itself.
  *
  * @since 0.1.0
  */
-function agentpress_listings_activation_check() {
+function agentpress_listings_activation() {
 
 		$latest = '1.7.1';
 
 		$theme_info = get_theme_data( TEMPLATEPATH . '/style.css' );
 
-				if ( 'genesis' != basename( TEMPLATEPATH ) ) {
+		if ( 'genesis' != basename( TEMPLATEPATH ) ) {
 	        deactivate_plugins( plugin_basename( __FILE__ ) ); /** Deactivate ourself */
 			wp_die( sprintf( __( 'Sorry, you can\'t activate unless you have installed <a href="%s">Genesis</a>', 'apl' ), 'http://www.studiopress.com/themes/genesis' ) );
 		}
 
 		if ( version_compare( $theme_info['Version'], $latest, '<' ) ) {
-								deactivate_plugins( plugin_basename( __FILE__ ) ); /** Deactivate ourself */
-				wp_die( sprintf( __( 'Sorry, you cannot activate without <a href="%s">Genesis %s</a> or greater', 'apl' ), 'http://www.studiopress.com/support/showthread.php?t=19576', $latest ) );
-				}
+			deactivate_plugins( plugin_basename( __FILE__ ) ); /** Deactivate ourself */
+			wp_die( sprintf( __( 'Sorry, you cannot activate without <a href="%s">Genesis %s</a> or greater', 'apl' ), 'http://www.studiopress.com/support/showthread.php?t=19576', $latest ) );
+		}
 
 }
 
