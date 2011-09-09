@@ -119,8 +119,14 @@ class AgentPress_Taxonomies {
 
 		$options = get_option( $this->settings_field );
 
+		/** Update the options */
 		update_option( $this->settings_field, wp_parse_args( $tax, $options ) );
 
+		/** Flush rewrite rules */
+		$this->register_taxonomies();
+		flush_rewrite_rules();
+
+		/** Redirect with notice */
 		genesis_admin_redirect( 'register-taxonomies', array( 'created' => 'true' ) );
 		exit;
 
