@@ -36,7 +36,13 @@ function agentpress_listings_activation() {
 		}
 		
 		/** Flush rewrite rules */
-		add_action( 'init', 'flush_rewrite_rules', 11 );
+		if ( ! post_type_exists( 'listing' ) ) {
+			agentpress_listings_init();
+			global $_agentpress_listings, $_agentpress_taxonomies;
+			$_agentpress_listings->create_post_type();
+			$_agentpress_taxonomies->register_taxonomies();
+		}
+		flush_rewrite_rules();
 
 }
 
