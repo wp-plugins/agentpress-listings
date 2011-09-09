@@ -42,7 +42,7 @@ class AgentPress_Listings_Search_Widget extends WP_Widget {
 			foreach ( (array) $terms as $term )
 				echo "\t<option value='{$term->slug}' " . selected( $current, $term->slug, false ) . ">{$term->name}</option>\n";
 
-			echo '</select><br />';
+			echo '</select>';
 		}
 
 		echo '<input type="submit" id="searchsubmit" class="searchsubmit" value="'. esc_attr__( 'Search Properties', 'apl' ) .'" />
