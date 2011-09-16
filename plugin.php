@@ -55,6 +55,10 @@ add_action( 'after_setup_theme', 'agentpress_listings_init' );
  * @since 0.1.0
  */
 function agentpress_listings_init() {
+	
+	/** Do nothing if a Genesis child theme isn't active */
+	if ( ! function_exists( 'genesis_get_option' ) )
+		return;
 
 	global $_agentpress_listings, $_agentpress_taxonomies;
 
