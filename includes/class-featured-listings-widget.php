@@ -57,7 +57,7 @@ class AgentPress_Featured_Listings_Widget extends WP_Widget {
 				$toggle = $toggle == 'left' ? 'right' : 'left';
 
 				/** wrap in post class div, and output **/
-				printf( '<div class="%s"><div class="widget-wrap"><div class="listing-wrap">%s</div></div></div>', join( ' ', get_post_class( $toggle ) ), $loop );
+				printf( '<div class="%s"><div class="widget-wrap"><div class="listing-wrap">%s</div></div></div>', join( ' ', get_post_class( $toggle ) ), apply_filters( 'agentpress_featured_listings_widget_loop', $loop ) );
 
 			endwhile; endif;
 			wp_reset_query();
