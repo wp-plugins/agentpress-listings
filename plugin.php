@@ -46,7 +46,7 @@ function agentpress_listings_activation() {
 
 }
 
-add_action( 'genesis_setup', 'agentpress_listings_init' );
+add_action( 'after_setup_theme', 'agentpress_listings_init' );
 /**
  * Initialize AgentPress Listings.
  *
