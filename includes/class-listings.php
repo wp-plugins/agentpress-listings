@@ -15,7 +15,6 @@ class AgentPress_Listings {
 	
 	/**
 	 * Property details array.
-	 *
 	 */
 	var $property_details;
 
@@ -34,7 +33,7 @@ class AgentPress_Listings {
 			), 
 			'col2' => array( 
 			    __( 'MLS #:', 'apl' ) => '_listing_mls', 
-			    __( 'Square Feed:', 'apl' ) => '_listing_sqft', 
+			    __( 'Square Feet:', 'apl' ) => '_listing_sqft', 
 			    __( 'Bedrooms:', 'apl' ) => '_listing_bedrooms', 
 			    __( 'Bathrooms:', 'apl' ) => '_listing_bathrooms', 
 			    __( 'Basement:', 'apl' ) => '_listing_basement' 
