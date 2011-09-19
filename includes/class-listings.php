@@ -25,19 +25,19 @@ class AgentPress_Listings {
 	function __construct() {
 		
 		$this->property_details = apply_filters( 'agentpress_listing_details', array(
-			'col1' => array(
-				'Price:' => '_listing_price',
-				'Address:' => '_listing_address',
-				'City:' => '_listing_city',
-				'State:' => '_listing_state',
-				'ZIP:' => '_listing_zip'
-			),
-			'col2' => array(
-				'MLS #:' => '_listing_mls',
-				'Square Feed:' => '_listing_sqft',
-				'Bedrooms:' => '_listing_bedrooms',
-				'Bathrooms:' => '_listing_bathrooms',
-				'Basement:' => '_listing_basement'
+			'col1' => array( 
+			    __( 'Price:', 'apl' ) => '_listing_price', 
+			    __( 'Address:', 'apl' ) => '_listing_address', 
+			    __( 'City:', 'apl' ) => '_listing_city', 
+			    __( 'State:', 'apl' ) => '_listing_state', 
+			    __( 'ZIP:', 'apl' ) => '_listing_zip' 
+			), 
+			'col2' => array( 
+			    __( 'MLS #:', 'apl' ) => '_listing_mls', 
+			    __( 'Square Feed:', 'apl' ) => '_listing_sqft', 
+			    __( 'Bedrooms:', 'apl' ) => '_listing_bedrooms', 
+			    __( 'Bathrooms:', 'apl' ) => '_listing_bathrooms', 
+			    __( 'Basement:', 'apl' ) => '_listing_basement' 
 			)
 		) );
 
