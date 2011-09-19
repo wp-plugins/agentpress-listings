@@ -23,7 +23,7 @@ class AgentPress_Listings {
 	 */
 	function __construct() {
 		
-		$this->property_details = apply_filters( 'agentpress_listing_details', array(
+		$this->property_details = apply_filters( 'agentpress_property_details', array(
 			'col1' => array( 
 			    __( 'Price:', 'apl' ) => '_listing_price', 
 			    __( 'Address:', 'apl' ) => '_listing_address', 
