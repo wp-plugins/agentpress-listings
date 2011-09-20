@@ -83,7 +83,7 @@ class AgentPress_Listings {
 				'menu_position'	=> 6,
 				'menu_icon'		=> APL_URL . 'images/apl-icon-16x16.png',
 				'has_archive'	=> true,
-				'supports'		=> array( 'title', 'editor', 'thumbnail', 'genesis-seo', 'genesis-layouts', 'genesis-simple-sidebars' ),
+				'supports'		=> array( 'title', 'editor', 'comments', 'thumbnail', 'genesis-seo', 'genesis-layouts', 'genesis-simple-sidebars' ),
 				'rewrite'		=> array( 'slug' => 'listings' ),
 			)
 		);
