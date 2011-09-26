@@ -69,6 +69,7 @@ function agentpress_listings_init() {
 	load_plugin_textdomain( 'apl', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 
 	/** Includes */
+	require_once( dirname( __FILE__ ) . '/includes/functions.php' );
 	require_once( dirname( __FILE__ ) . '/includes/class-listings.php' );
 	require_once( dirname( __FILE__ ) . '/includes/class-taxonomies.php' );
 	require_once( dirname( __FILE__ ) . '/includes/class-featured-listings-widget.php' );
