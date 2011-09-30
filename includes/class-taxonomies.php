@@ -91,6 +91,8 @@ class AgentPress_Taxonomies {
 			wp_die( __( 'Please complete all required fields.', 'apl' ) );
 
 		extract( $args );
+		
+		$id = sanitize_title( $id );
 
 		$labels = array(
 			'name'					=> strip_tags( $name ),
