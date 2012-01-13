@@ -5,7 +5,7 @@ Requires at least: 3.2
 Tested up to: 3.2.1
 Stable tag: 1.0.0
 
-This plugin plugin creates a listings management system for AgentPress child themes, from StudioPress.
+This plugin creates a listings management system for AgentPress child themes, from StudioPress.
 
 == Description ==
 
