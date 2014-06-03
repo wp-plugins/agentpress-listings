@@ -2,11 +2,11 @@
 /*
 	Plugin Name: AgentPress Listings
 	Plugin URI: http://www.studiopress.com/
-	Description: AgentPress Listings is a plugin for the AgentPress theme which adds a manual Listings component for Real Estate agents.
+	Description: AgentPress Listings is a plugin which adds a Listings custom post type for Real Estate agents.
 	Author: StudioPress
 	Author URI: http://www.studiopress.com/
 
-	Version: 1.0.0
+	Version: 1.2.0
 
 	License: GNU General Public License v2.0 (or later)
 	License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -21,27 +21,34 @@ register_activation_hook( __FILE__, 'agentpress_listings_activation' );
  */
 function agentpress_listings_activation() {
 
-		$latest = '1.7.1';
+		$latest = '2.0.2';
 
-		$theme_info = get_theme_data( TEMPLATEPATH . '/style.css' );
+		if ( 'genesis' != get_option( 'template' ) ) {
 
-		if ( 'genesis' != basename( TEMPLATEPATH ) ) {
-	        deactivate_plugins( plugin_basename( __FILE__ ) ); /** Deactivate ourself */
-			wp_die( sprintf( __( 'Sorry, you can\'t activate unless you have installed <a href="%s">Genesis</a>', 'apl' ), 'http://www.studiopress.com/themes/genesis' ) );
+			//* Deactivate ourself
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+			wp_die( sprintf( __( 'Sorry, you can\'t activate unless you have installed <a href="%s">Genesis</a>', 'agentpress-listings' ), 'http://my.studiopress.com/themes/genesis/' ) );
+
 		}
 
-		if ( version_compare( $theme_info['Version'], $latest, '<' ) ) {
+		if ( version_compare( wp_get_theme( 'genesis' )->get( 'Version' ), $latest, '<' ) ) {
+
+			//* Deactivate ourself
 			deactivate_plugins( plugin_basename( __FILE__ ) ); /** Deactivate ourself */
-			wp_die( sprintf( __( 'Sorry, you cannot activate without <a href="%s">Genesis %s</a> or greater', 'apl' ), 'http://www.studiopress.com/support/showthread.php?t=19576', $latest ) );
+			wp_die( sprintf( __( 'Sorry, you cannot activate without <a href="%s">Genesis %s</a> or greater', 'agentpress-listings' ), 'http://www.studiopress.com/support/showthread.php?t=19576', $latest ) );
+
 		}
 		
 		/** Flush rewrite rules */
 		if ( ! post_type_exists( 'listing' ) ) {
+
 			agentpress_listings_init();
 			global $_agentpress_listings, $_agentpress_taxonomies;
 			$_agentpress_listings->create_post_type();
 			$_agentpress_taxonomies->register_taxonomies();
+
 		}
+
 		flush_rewrite_rules();
 
 }
@@ -66,7 +73,7 @@ function agentpress_listings_init() {
 	define( 'APL_VERSION', '1.0.0' );
 
 	/** Load textdomain for translation */
-	load_plugin_textdomain( 'apl', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'agentpress-listings', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 
 	/** Includes */
 	require_once( dirname( __FILE__ ) . '/includes/functions.php' );
