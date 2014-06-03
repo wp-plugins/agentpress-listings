@@ -10,13 +10,13 @@
  */
 class AgentPress_Listings {
 
-	var $settings_field = 'agentpress_taxonomies';
-	var $menu_page = 'register-taxonomies';
+	public $settings_field = 'agentpress_taxonomies';
+	public $menu_page = 'register-taxonomies';
 	
 	/**
 	 * Property details array.
 	 */
-	var $property_details;
+	public $property_details;
 
 	/**
 	 * Construct Method.
@@ -25,18 +25,18 @@ class AgentPress_Listings {
 		
 		$this->property_details = apply_filters( 'agentpress_property_details', array(
 			'col1' => array( 
-			    __( 'Price:', 'apl' ) => '_listing_price', 
-			    __( 'Address:', 'apl' ) => '_listing_address', 
-			    __( 'City:', 'apl' ) => '_listing_city', 
-			    __( 'State:', 'apl' ) => '_listing_state', 
-			    __( 'ZIP:', 'apl' ) => '_listing_zip' 
+			    __( 'Price:', 'agentpress-listings' )   => '_listing_price', 
+			    __( 'Address:', 'agentpress-listings' ) => '_listing_address', 
+			    __( 'City:', 'agentpress-listings' )    => '_listing_city', 
+			    __( 'State:', 'agentpress-listings' )   => '_listing_state', 
+			    __( 'ZIP:', 'agentpress-listings' )     => '_listing_zip' 
 			), 
 			'col2' => array( 
-			    __( 'MLS #:', 'apl' ) => '_listing_mls', 
-			    __( 'Square Feet:', 'apl' ) => '_listing_sqft', 
-			    __( 'Bedrooms:', 'apl' ) => '_listing_bedrooms', 
-			    __( 'Bathrooms:', 'apl' ) => '_listing_bathrooms', 
-			    __( 'Basement:', 'apl' ) => '_listing_basement' 
+			    __( 'MLS #:', 'agentpress-listings' )       => '_listing_mls', 
+			    __( 'Square Feet:', 'agentpress-listings' ) => '_listing_sqft', 
+			    __( 'Bedrooms:', 'agentpress-listings' )    => '_listing_bedrooms', 
+			    __( 'Bathrooms:', 'agentpress-listings' )   => '_listing_bathrooms', 
+			    __( 'Basement:', 'agentpress-listings' )    => '_listing_basement' 
 			)
 		) );
 
@@ -52,7 +52,7 @@ class AgentPress_Listings {
 		add_shortcode( 'property_map', array( $this, 'property_map_shortcode' ) );
 		add_shortcode( 'property_video', array( $this, 'property_video_shortcode' ) );
 
-		add_action( 'admin_head', array( $this, 'admin_style' ) );
+		#add_action( 'admin_head', array( $this, 'admin_style' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_js' ) );
 
 	}
@@ -65,26 +65,26 @@ class AgentPress_Listings {
 		$args = apply_filters( 'agentpress_listings_post_type_args',
 			array(
 				'labels' => array(
-					'name'					=> __( 'Listings', 'apl' ),
-					'singular_name'			=> __( 'Listing', 'apl' ),
-					'add_new'				=> __( 'Add New', 'apl' ),
-					'add_new_item'			=> __( 'Add New Listing', 'apl' ),
-					'edit'					=> __( 'Edit', 'apl' ),
-					'edit_item'				=> __( 'Edit Listing', 'apl' ),
-					'new_item'				=> __( 'New Listing', 'apl' ),
-					'view'					=> __( 'View Listing', 'apl' ),
-					'view_item'				=> __( 'View Listing', 'apl' ),
-					'search_items'			=> __( 'Search Listings', 'apl' ),
-					'not_found'				=> __( 'No listings found', 'apl' ),
-					'not_found_in_trash'	=> __( 'No listings found in Trash', 'apl' )
+					'name'               => __( 'Listings', 'agentpress-listings' ),
+					'singular_name'      => __( 'Listing', 'agentpress-listings' ),
+					'add_new'            => __( 'Add New', 'agentpress-listings' ),
+					'add_new_item'       => __( 'Add New Listing', 'agentpress-listings' ),
+					'edit'               => __( 'Edit', 'agentpress-listings' ),
+					'edit_item'          => __( 'Edit Listing', 'agentpress-listings' ),
+					'new_item'           => __( 'New Listing', 'agentpress-listings' ),
+					'view'               => __( 'View Listing', 'agentpress-listings' ),
+					'view_item'          => __( 'View Listing', 'agentpress-listings' ),
+					'search_items'       => __( 'Search Listings', 'agentpress-listings' ),
+					'not_found'          => __( 'No listings found', 'agentpress-listings' ),
+					'not_found_in_trash' => __( 'No listings found in Trash', 'agentpress-listings' )
 				),
-				'public'		=> true,
-				'query_var'		=> true,
-				'menu_position'	=> 6,
-				'menu_icon'		=> APL_URL . 'images/apl-icon-16x16.png',
-				'has_archive'	=> true,
-				'supports'		=> array( 'title', 'editor', 'comments', 'thumbnail', 'genesis-seo', 'genesis-layouts', 'genesis-simple-sidebars' ),
-				'rewrite'		=> array( 'slug' => 'listings' ),
+				'public'        => true,
+				'query_var'     => true,
+				'menu_position' => 6,
+				'menu_icon'     => 'dashicons-admin-home',
+				'has_archive'   => true,
+				'supports'      => array( 'title', 'editor', 'comments', 'thumbnail', 'genesis-seo', 'genesis-layouts', 'genesis-simple-sidebars' ),
+				'rewrite'       => array( 'slug' => 'listings' ),
 			)
 		);
 
@@ -94,7 +94,7 @@ class AgentPress_Listings {
 
 	function register_meta_boxes() {
 
-		add_meta_box( 'listing_details_metabox', __( 'Property Details', 'apl' ), array( &$this, 'listing_details_metabox' ), 'listing', 'normal', 'high' );
+		add_meta_box( 'listing_details_metabox', __( 'Property Details', 'agentpress-listings' ), array( &$this, 'listing_details_metabox' ), 'listing', 'normal', 'high' );
 
 	}
 
@@ -103,6 +103,9 @@ class AgentPress_Listings {
 	}
 
 	function metabox_save( $post_id, $post ) {
+
+		if ( ! isset( $_POST['agentpress_details_metabox_nonce'] ) || ! isset( $_POST['ap'] ) )
+			return;
 
 		/** Verify the nonce */
 	    if ( ! wp_verify_nonce( $_POST['agentpress_details_metabox_nonce'], 'agentpress_details_metabox_save' ) )
@@ -135,6 +138,16 @@ class AgentPress_Listings {
 
 	    }
 
+ 		//* extra check for price that can create a sortable value
+ 		if ( isset( $property_details['_listing_price'] ) && ! empty( $property_details['_listing_price'] ) ) {
+
+ 			$price_sortable	= preg_replace( '/[^0-9\.]/', '', $property_details['_listing_price'] );
+ 			update_post_meta( $post_id, '_listing_price_sortable', floatval( $price_sortable ) );
+
+ 		} else {
+ 			delete_post_meta( $post_id, '_listing_price_sortable' );
+ 		}
+
 	}
 
 	/**
@@ -143,12 +156,12 @@ class AgentPress_Listings {
 	function columns_filter ( $columns ) {
 
 		$columns = array(
-			'cb'					=> '<input type="checkbox" />',
-			'listing_thumbnail'		=> __( 'Thumbnail', 'apl' ),
-			'title'					=> __( 'Listing Title', 'apl' ),
-			'listing_details'		=> __( 'Details', 'apl' ),
-			'listing_features'		=> __( 'Features', 'apl' ),
-			'listing_categories'	=> __( 'Categories', 'apl' )
+			'cb'                 => '<input type="checkbox" />',
+			'listing_thumbnail'  => __( 'Thumbnail', 'agentpress-listings' ),
+			'title'              => __( 'Listing Title', 'agentpress-listings' ),
+			'listing_details'    => __( 'Details', 'agentpress-listings' ),
+			'listing_features'   => __( 'Features', 'agentpress-listings' ),
+			'listing_categories' => __( 'Categories', 'agentpress-listings' )
 		);
 
 		return $columns;
@@ -194,16 +207,16 @@ class AgentPress_Listings {
 
 		$output .= '<div class="property-details">';
 
-		$output .= '<div class="property-details-col1">';
+		$output .= '<div class="property-details-col1 one-half first">';
 			foreach ( (array) $this->property_details['col1'] as $label => $key ) {
 				$output .= sprintf( '<b>%s</b> %s<br />', esc_html( $label ), esc_html( get_post_meta($post->ID, $key, true) ) );	
 			}
-		$output .= '</div><div class="property-details-col2">';
+		$output .= '</div><div class="property-details-col2 one-half">';
 			foreach ( (array) $this->property_details['col2'] as $label => $key ) {
 				$output .= sprintf( '<b>%s</b> %s<br />', esc_html( $label ), esc_html( get_post_meta($post->ID, $key, true) ) );	
 			}
 		$output .= '</div><div class="clear">';
-			$output .= sprintf( '<p><b>%s</b><br /> %s</p></div>', __( 'Additional Features:', 'apl' ), get_the_term_list( $post->ID, 'features', '', ', ', '' ) );
+			$output .= sprintf( '<p><b>%s</b><br /> %s</p></div>', __( 'Additional Features:', 'agentpress-listings' ), get_the_term_list( $post->ID, 'features', '', ', ', '' ) );
 
 		$output .= '</div>';
 
@@ -220,12 +233,6 @@ class AgentPress_Listings {
 	function property_video_shortcode( $atts ) {
 
 		return genesis_get_custom_field( '_listing_video' );
-
-	}
-
-	function admin_style() {
-
-		printf( '<style type="text/css" media="screen">.icon32-posts-listing { background: transparent url(%s) no-repeat !important; }</style>', APL_URL . 'images/apl-icon-32x32.png' );
 
 	}
 
