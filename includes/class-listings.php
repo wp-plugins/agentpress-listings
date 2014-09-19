@@ -55,6 +55,10 @@ class AgentPress_Listings {
 		#add_action( 'admin_head', array( $this, 'admin_style' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_js' ) );
 
+		add_filter( 'search_template', array( $this, 'search_template' ) );
+
+		add_filter( 'genesis_build_crumbs', array( $this, 'breadcrumbs' ), 10, 2 );
+
 	}
 
 	/**
@@ -239,6 +243,36 @@ class AgentPress_Listings {
 	function admin_js() {
 
 		wp_enqueue_script( 'accesspress-admin-js', APL_URL . 'includes/js/admin.js', array(), APL_VERSION, true );
+
+	}
+
+	function search_template( $template ) {
+
+		$post_type = get_query_var( 'post_type' );
+
+		if ( is_array( $post_type ) || 'listing' != $post_type ) {
+			return $template;
+		}
+
+		$listing_template = locate_template( array( 'archive-listing.php' ), false );
+
+		return $listing_template ? $listing_template : $template;	
+
+	}
+
+	function breadcrumbs( $crumbs, $args ) {
+
+		$post_type = get_query_var( 'post_type' );
+
+		if ( is_array( $post_type ) || 'listing' != $post_type ) {
+			return $crumbs;
+		}
+
+		$crumbs = array_pop( $crumbs );
+
+		$crumbs[] = __( 'Listing Search Results', 'agentpress-listings' );
+
+		return $crumbs;
 
 	}
 
